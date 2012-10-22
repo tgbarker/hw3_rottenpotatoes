@@ -1,11 +1,22 @@
 # Add a declarative step here for populating the DB with movies.
 
+
+#ActiveRecord::Schema.define do
+#    create_table :movies do |table|
+#        table.column :title, :string
+#        table.column :rating, :string
+#	table.column :release_date, :datetime
+#    end
+#end
+
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
+    Movie.create!(movie)
+  end
+  #assert movies_table.hashes.size == Movie.all.count
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
-  end
-  flunk "Unimplemented"
+  #flunk "Unimplemented"
 end
 
 # Make sure that one string (regexp) occurs before or after another one
